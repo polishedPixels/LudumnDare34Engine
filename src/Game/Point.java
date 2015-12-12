@@ -6,7 +6,7 @@ import Game.Map.Tilemap;
 public class Point {
 
 	// point in scene
-	private double posX, posY;
+	public double posX, posY;
 
 	public Point(double PosX, double PosY) {
 
@@ -15,11 +15,11 @@ public class Point {
 	}
 
 	public double getPosX() {
-		return posX - Camera.Xoffset;
+		return posX;// - Camera.Xoffset;
 	}
 
 	public double getPosY() {
-		return posY - Camera.Yoffset;
+		return posY;// - Camera.Yoffset;
 	}
 
 	public void setPosX(double PosX) {

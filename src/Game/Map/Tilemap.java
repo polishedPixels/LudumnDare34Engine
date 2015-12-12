@@ -20,13 +20,7 @@ public class Tilemap {
 		{
 			for(int y = 0; y < sizeY; y++)
 			{
-				Color type;
-				if(y%2 == 0)
-					type = Color.Blue;
-				else if(x%2 == 0)
-					type = Color.Red;
-				else 
-					type = Color.White;
+				Color type = Color.White;
 					
 				setTile(new Tile(type,x, y));
 			}

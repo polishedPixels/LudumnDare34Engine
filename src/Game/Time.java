@@ -1,26 +1,42 @@
 package Game;
 
+import org.lwjgl.Sys;
 
 public class Time {
 	// Under the class definition
-	private static long lastFrame, firstFrame, delta;
 	
-	private static long getTime() {
-		return System.currentTimeMillis();
+	static int fps = 0;
+	static double fpsDeltaCounter = 0;
+	static double lastFrame = 0;
+	static double delta;
+	public static double getTime() {
+	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
-	
-	public static long getDelta() {	
-		System.out.println(delta);
-		return delta;
-	}
-	public static void UpdateFirstFrame()
-	{
-		delta = lastFrame -firstFrame;
-		firstFrame = getTime();
-	}
-	
-	public static void UpdateLastFrame()
+	public static void resetLastFrame()
 	{
 		lastFrame = getTime();
 	}
+	public static double getDelta() {
+	    
+	    return delta;
+	}
+	public static void updateDelta()
+	{
+		double time = getTime();
+		delta = (double) (time - lastFrame);
+	}
+	
+	public static void FPS()
+	{
+		fps++;
+		fpsDeltaCounter += getDelta();
+		
+		if(fpsDeltaCounter >= 1000)
+		{
+			System.out.println("FPS: " + fps);
+			fps = 0;
+			fpsDeltaCounter = 0;
+		}
+	}
+	
 }

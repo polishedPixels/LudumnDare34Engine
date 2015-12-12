@@ -1,21 +1,24 @@
 package Game;
 
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+import static org.lwjgl.opengl.GL11.glOrtho;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.omg.CORBA.TIMEOUT;
-
-import Game.Map.Tilemap;
-
-import static org.lwjgl.opengl.GL11.*;
 
 public class Main {
 
-	public static final short WindowWidth = 640;
-	public static final short WindowHeight = 480;
+	public static final short WindowWidth = 1600;
+	public static final short WindowHeight = 900;
 	
-	static Tilemap tilemap;
 
 	private static void init(short width, short height)
 	{
@@ -37,25 +40,17 @@ public class Main {
 	
 	private static void gameInit()
 	{
-		tilemap = new Tilemap(10, 10);
-		
+		Scene.init();
+		Camera.setPosition(100, 0);
 	}
 	private static void draw()
 	{
-		tilemap.draw();
-		Draw.Square(new Point(-100, -100), 50);
+		Scene.getCurTilemap().draw();
+		
 	}
 	private static void inputUpdate()
 	{
-		//camera movement
-		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT))
-			Camera.setPosition(new Point(Camera.getPosition().posX + 1 * Time.getDelta(), Camera.getPosition().posY));
-		else if(Keyboard.isKeyDown(Keyboard.KEY_LEFT))
-			Camera.setPosition(new Point(Camera.getPosition().posX - 1 * Time.getDelta(), Camera.getPosition().posY));
-		else if(Keyboard.isKeyDown(Keyboard.KEY_UP))
-			Camera.setPosition(new Point(Camera.getPosition().posX, Camera.getPosition().posY + 1 * Time.getDelta()));
-		else if(Keyboard.isKeyDown(Keyboard.KEY_DOWN))
-			Camera.setPosition(new Point(Camera.getPosition().posX, Camera.getPosition().posY - 1 * Time.getDelta()));
+		Input.update();
 		
 	}
 	
@@ -65,18 +60,24 @@ public class Main {
     	gameInit();
         while (!Display.isCloseRequested()) {
         	
+        	Time.UpdateFirstFrame();
         	glClear(GL_COLOR_BUFFER_BIT);
         	
         	inputUpdate();
         	draw();
         	
             Display.update(); 
-            Time.Update();
+            Time.UpdateLastFrame();
             Display.sync(60);
            
         }
  
         Display.destroy();
         System.exit(0);
+    }
+    
+    public static void printXYCoords(String note, double X, double Y)
+    {
+    	System.out.println(note + "- X: " + X + " Y: " + Y);
     }
 }

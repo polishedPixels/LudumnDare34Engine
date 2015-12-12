@@ -6,7 +6,7 @@ public class Tilemap {
 
 	int sizeX = 0,sizeY = 0;
 	Tile[][] Tilemap;
-	public final static double tileSize = 32;
+	public final static double tileSize = 64;
 	
 	public Tilemap(int SizeX, int SizeY)
 	{
@@ -34,6 +34,23 @@ public class Tilemap {
 	}
 	public void setTile(Tile tile) {
 		Tilemap[tile.posX][tile.posY] = tile;
+	}
+	public Tile getTile(int x, int y)
+	{
+		if(x < 0 || x >= sizeX || y < 0 || y >= sizeY)
+		{
+			System.err.println("Tilemap getTile Out of Bounds X: " + x + " Y: " + y );
+			return null;
+		}
+		return Tilemap[x][y];
+	}
+	public double getSceneSizeX()
+	{
+		return sizeX * tileSize;
+	}
+	public double getSceneSizeY()
+	{
+		return sizeY * tileSize;
 	}
 	public void draw()
 	{

@@ -5,7 +5,7 @@ import Game.Point;
 
 public class Tile {
 	
-	int posX, posY; // posiitons in Tilemap array
+	public int posX, posY; // posiitons in Tilemap array
 	Point pos; // position in scene
 	Color color;
 	
@@ -17,6 +17,10 @@ public class Tile {
 		
 		pos = new Point((PosX * Tilemap.tileSize) + Tilemap.tileSize/2, PosY * Tilemap.tileSize + Tilemap.tileSize/2);
 		
+	}
+	public Color getColor()
+	{
+		return color;
 	}
 	public void draw()
 	{

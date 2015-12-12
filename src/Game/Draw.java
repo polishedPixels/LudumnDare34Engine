@@ -3,7 +3,6 @@ package Game;
 import static org.lwjgl.opengl.GL11.*;
 
 import Game.Map.Tile;
-import Game.Map.Tile.Color;
 
 public abstract class Draw {
 	
@@ -12,10 +11,10 @@ public abstract class Draw {
 		glColor3f(1f, 1f, 1f);
 		glBegin(GL_QUADS);
 		{
-			glVertex2d(center.posX - width/2, center.posY + width/2);
-			glVertex2d(center.posX + width/2, center.posY + width/2);
-			glVertex2d(center.posX + width/2, center.posY - width/2);
-			glVertex2d(center.posX - width/2, center.posY - width/2);
+			glVertex2d(center.getPosX() - width/2, center.getPosY() + width/2);
+			glVertex2d(center.getPosX() + width/2, center.getPosY() + width/2);
+			glVertex2d(center.getPosX() + width/2, center.getPosY() - width/2);
+			glVertex2d(center.getPosX() - width/2, center.getPosY() - width/2);
 		}
 		glEnd();
 		
@@ -42,10 +41,11 @@ public abstract class Draw {
 		}	
 		glBegin(GL_QUADS);
 		{
-			glVertex2d(center.posX - width/2, center.posY + width/2);
-			glVertex2d(center.posX + width/2, center.posY + width/2);
-			glVertex2d(center.posX + width/2, center.posY - width/2);
-			glVertex2d(center.posX - width/2, center.posY - width/2);
+			glVertex2d(center.getPosX() - width/2, center.getPosY() + width/2);
+			glVertex2d(center.getPosX() + width/2, center.getPosY() + width/2);
+			glVertex2d(center.getPosX() + width/2, center.getPosY() - width/2);
+			glVertex2d(center.getPosX() - width/2, center.getPosY() - width/2);
+
 		}
 		glEnd();
 		

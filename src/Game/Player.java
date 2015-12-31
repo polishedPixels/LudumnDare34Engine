@@ -1,7 +1,7 @@
 package Game;
 
 
-import org.lwjgl.input.Keyboard;
+import static org.lwjgl.glfw.GLFW.*;
 
 import Game.Map.Tile.Color;
 
@@ -11,7 +11,7 @@ public class Player {
 	Point pos;
 	double size; // radius
 	Type type;
-	double speed = 1;
+	double speed = 5;
 	
 	public Player(Type type, double Size, Point position)
 	{
@@ -38,24 +38,24 @@ public class Player {
 		switch(type)
 		{
 		case Left:
-			if(Keyboard.isKeyDown(Keyboard.KEY_W))
+			if(KeyBoardInput.keys[GLFW_KEY_W])
 				pos.setPosY(pos.getPosY() + speed * Time.getDelta());
-			else if(Keyboard.isKeyDown(Keyboard.KEY_S))
+			else if(KeyBoardInput.keys[GLFW_KEY_S])
 				pos.setPosY(pos.getPosY() - speed * Time.getDelta());
-			if(Keyboard.isKeyDown(Keyboard.KEY_D))
+			if(KeyBoardInput.keys[GLFW_KEY_D])
 				pos.setPosX(pos.getPosX() + speed * Time.getDelta());
-			else if(Keyboard.isKeyDown(Keyboard.KEY_A))
+			else if(KeyBoardInput.keys[GLFW_KEY_A])
 				pos.setPosX(pos.getPosX() - speed * Time.getDelta());		//Main.printXYCoords("Left:", pos.getPosX(), pos.getPosY());
 
 			break;
 		case Right:
-			if(Keyboard.isKeyDown(Keyboard.KEY_UP))
+			if(KeyBoardInput.keys[GLFW_KEY_UP])
 				pos.setPosY(pos.getPosY() + speed * Time.getDelta());
-			else if(Keyboard.isKeyDown(Keyboard.KEY_DOWN))
+			else if(KeyBoardInput.keys[GLFW_KEY_DOWN])
 				pos.setPosY(pos.getPosY() - speed * Time.getDelta());
-			if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT))
+			if(KeyBoardInput.keys[GLFW_KEY_RIGHT])
 				pos.setPosX(pos.getPosX() + speed * Time.getDelta());
-			else if(Keyboard.isKeyDown(Keyboard.KEY_LEFT))
+			else if(KeyBoardInput.keys[GLFW_KEY_LEFT])
 				pos.setPosX(pos.getPosX() - speed * Time.getDelta());
 			break;
 		default:

@@ -1,6 +1,7 @@
 package Game;
 
-import org.lwjgl.Sys;
+import static org.lwjgl.glfw.GLFW.*;
+
 
 public class Time {
 	// Under the class definition
@@ -9,9 +10,11 @@ public class Time {
 	static double fpsDeltaCounter = 0;
 	static double lastFrame = 0;
 	static double delta;
+	
 	public static double getTime() {
-	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+	    return System.nanoTime() / 10000000.0;
 	}
+	
 	public static void resetLastFrame()
 	{
 		lastFrame = getTime();

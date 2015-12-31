@@ -1,28 +1,32 @@
 package Game;
 
 
-import org.lwjgl.input.Mouse;
+import org.lwjgl.glfw.GLFWCursorPosCallback;
 
 import Game.Map.Tile;
 import Game.Map.Tilemap;
 
-public abstract class Input {
+public class MouseInput extends GLFWCursorPosCallback{
 
 	static double X, Y;
-	public static void update()
-	{
-		X = Mouse.getX();
-		Y = Mouse.getY();
+	
+	
+	@Override
+	public void invoke(long window, double x, double y) {
+		// TODO Auto-generated method stub
+		X = x;
+		Y = y;
 	}
-	public static double getMouseX()
+	
+	public double getMouseX()
 	{
-		return X + Camera.Xoffset - Main.WindowWidth/2;
+		return X + Camera.Xoffset - Main.WIDTH/2;
 	}
-	public static double getMouseY()
+	public  double getMouseY()
 	{
-		return Y + Camera.Yoffset - Main.WindowHeight/2;
+		return Main.HEIGHT -Y + Camera.Yoffset - Main.HEIGHT/2;
 	}
-	public static Tile getCurTile() {
+	public Tile getCurTile() {
 		Tile curTile = null;
 		if (getMouseX() >= 0 && getMouseX() <= Scene.getCurTilemap().getSceneSizeX() && getMouseY() >= 0 && getMouseY() <= Scene.getCurTilemap().getSceneSizeY()) {
 			int TileX, TileY;
@@ -37,4 +41,5 @@ public abstract class Input {
 		}
 		return curTile;
 	}
+	
 }
